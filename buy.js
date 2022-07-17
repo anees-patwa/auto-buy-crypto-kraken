@@ -9,9 +9,8 @@ module.exports = async (req, res, kraken) => {
    * Volume - volume to be bought in quote currency i.e. 10 euros.
    */
   const orders = [
-    { base: "XMR", quote: "EUR", volume: 5 },
-    { base: "BTC", quote: "EUR", volume: 5 },
-    { base: "ETH", quote: "EUR", volume: 5 }
+    { base: "BTC", quote: "USD", volume: 25 },
+    { base: "ETH", quote: "USD", volume: 25 }
   ];
 
   for (const order of orders) {
@@ -32,15 +31,19 @@ module.exports = async (req, res, kraken) => {
      */
     let finalVolume = volume / price;
     if (finalVolume < MIN_QUANTITIES_BUY[base]) {
-      finalVolume = MIN_QUANTITIES_BUY[base];
+      throw new Error("Order volume below minimum quantity");
     }
 
-    await kraken.api("AddOrder", {
-      pair: tickerPair,
-      type: "buy",
-      ordertype: "market",
-      volume: finalVolume
-    });
+    try {
+      await kraken.api("AddOrder", {
+        pair: tickerPair,
+        type: "buy",
+        ordertype: "market",
+        volume: finalVolume
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   res.status(200);
