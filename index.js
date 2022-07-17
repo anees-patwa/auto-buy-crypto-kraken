@@ -8,7 +8,7 @@ const sell = require('./sell');
 
 const MODE_BUY = 'buy';
 const MODE_SELL = 'sell';
-const CURRENT_MODE = MODE_SELL; // set whether to sell or buy crypto
+const CURRENT_MODE = MODE_BUY; // set whether to sell or buy crypto
 
 /**
  * Responds to any HTTP request.
