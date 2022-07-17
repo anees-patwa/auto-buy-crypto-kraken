@@ -30,7 +30,7 @@ module.exports = async (req, res, kraken) => {
      * volume that Kraken allows to buy (differs based on currency).
      */
     let finalVolume = volume / price;
-    if (finalVolume < MIN_QUANTITIES_BUY[base]) {
+    if (finalVolume < MIN_QUANTITIES[base]) {
       throw new Error("Order volume below minimum quantity");
     }
 
