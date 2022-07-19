@@ -9,8 +9,8 @@ module.exports = async (req, res, kraken) => {
    * Volume - volume to be bought in quote currency i.e. 10 euros.
    */
   const orders = [
-    { base: "BTC", quote: "USD", volume: 25 },
-    { base: "ETH", quote: "USD", volume: 25 }
+    { base: "BTC", quote: "USDC", volume: 25 },
+    { base: "ETH", quote: "USDC", volume: 25 }
   ];
 
   for (const order of orders) {
